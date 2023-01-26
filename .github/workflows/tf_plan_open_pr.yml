@@ -2,11 +2,9 @@ on:
   pull_request:
     types:
       - opened
-#    branches:
-#      - 'dev'
-#      - 'prod'
-#      - 'test'
-#      - 'uat'
+    branches:
+      - 'main'
+ 
   workflow_dispatch:
 
 name: 'Pull Request Terraform Plan'
@@ -33,6 +31,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1.3.2
       with:
@@ -45,5 +48,4 @@ jobs:
       run: terraform validate    
 
     - name: Terraform Plan
-      run: terraform plan -var-file=tfvars/${{ env.TF_WORKSPACE }}.tfvars -out=terraform.plan
-      
+      run: terraform plan -var-file=vars/${{ env.TF_WORKSPACE }}.tfvars -out=terraform.plan
