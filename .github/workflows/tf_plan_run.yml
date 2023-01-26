@@ -1,0 +1,48 @@
+on:
+  push:
+    branches:
+   #   - 'main'
+   #   - '!test'
+   #   - '!development'
+     - '*'
+   
+  workflow_dispatch:
+
+name: 'Run Terraform Plan'
+
+defaults:
+  run:
+    working-directory: ./terraform
+
+env:
+  TERRAFORM_VERSION: 1.1.7
+
+jobs:
+  terraform_plan:
+    strategy:
+      matrix:
+        workspace: ['dev', 'prod']
+
+    name: 'Terraform Branch Plan'
+    runs-on: ubuntu-latest
+    env:
+      TF_WORKSPACE: ${{ matrix.workspace }}
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1.3.2
+      with:
+        terraform_version: ${{ env.TERRAFORM_VERSION }}
+    
+    - name: Terraform Init
+      run: terraform init
+    
+    - name: Terraform Validate
+      run: terraform validate    
+
+    - name: Terraform Plan
+      run: terraform plan -var-file=tfvars/${{ env.TF_WORKSPACE }}.tfvars -out=terraform.plan
+      
