@@ -1,4 +1,4 @@
 resource "azurerm_resource_group" "resource_group" {
-  name     = "${var.project_name}-${var.environment}-rg"
+  name     = "djtest123"
   location = var.location
 }
