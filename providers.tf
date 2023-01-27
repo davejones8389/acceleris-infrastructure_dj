@@ -19,6 +19,10 @@ provider "azurerm" {
   features {}
 }
 
+provider “azurerm” {
+feature {}
+}
+
 provider "aws" {
   region  = "eu-west-1"
   alias   = "secrets"
