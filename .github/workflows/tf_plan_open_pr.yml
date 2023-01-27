@@ -3,7 +3,7 @@ on:
     types:
       - opened
     branches:
-      - 'dev'
+      - '*'
  
   workflow_dispatch:
 
