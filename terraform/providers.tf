@@ -1,12 +1,6 @@
 terraform {
-  backend "local" {
-  #  resource_group_name  = "terraform"
-  #  storage_account_name = "amalfitfstate"
-  #  container_name       = "tfstate"
-  #  key                  = "amalifi.terraform.tfstate"
-  }
 
-  required_version = "1.1.7"
+  required_version = "1.3.6"
 
   required_providers {
     azurerm = {
