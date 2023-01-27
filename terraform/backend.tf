@@ -7,4 +7,4 @@ terraform {
     region   = "eu-west-1"
     #role_arn = "arn:aws:iam::251818369768:role/terraform_atlantis_access"
   }
-}
+} 
