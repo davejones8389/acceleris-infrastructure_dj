@@ -1,5 +1,5 @@
 resource "azurerm_mssql_server" "acceleris_server" {
-  name                         = "${var.project_name}${var.environment}sql"
+  name                         = "${var.project_name}${var.environment}sql9123"
   resource_group_name          = azurerm_resource_group.resource_group.name
   location                     = var.location
   version                      = "12.0"
