@@ -9,3 +9,7 @@ variable "environment" {
 variable "location" {
   default = "UK South"
 }
+
+variable "account_id" {
+  default = "251818369768"
+}
